@@ -1,16 +1,5 @@
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/main/source.lua", true))()
 
--- Deteksi key dari file sebelum window dibuat
-_G.CurrentKey = ""
-local KeyFile = "XentaurHub/key.txt"
-
-if isfile(KeyFile) then
-	local SavedKey = readfile(KeyFile)
-	if SavedKey == "ok" or SavedKey == "ArmansyahKeceAnjir" then
-		_G.CurrentKey = SavedKey
-	end
-end
-
 local Window = Luna:CreateWindow({
 	Name = "XentaurHub",
 	Subtitle = nil,
@@ -33,17 +22,17 @@ local Window = Luna:CreateWindow({
 		Key = {"ok", "ArmansyahKeceAnjir"},
 		SecondAction = {
 			Enabled = true,
-			Type = "none",
-			Parameter = ""
+			Type = "loadstring",
+			Parameter = "https://raw.githubusercontent.com/YOUR_GITHUB/XentaurHub/main/asli.lua"
 		}
 	}
 })
 
--- Update CurrentKey setelah key berhasil divalidasi
+-- Deteksi key yang dipakai dan simpan ke _G
+task.wait(0.5)
+local KeyFile = "XentaurHub/key.txt"
 if isfile(KeyFile) then
-	local SavedKey = readfile(KeyFile)
-	_G.CurrentKey = SavedKey
+	_G.CurrentKey = readfile(KeyFile)
+else
+	_G.CurrentKey = ""
 end
-
--- Load file utama setelah key benar
-loadstring(game:HttpGet("https://raw.githubusercontent.com/YOUR_GITHUB/XentaurHub/main/asli.lua", true))()
